@@ -1,0 +1,150 @@
+/* src/pages/PostJobPage.css */
+.post-job-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .job-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .question-group {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  
+  .question-group label {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-add {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-add:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-submit {
+    background-color: #28a745;
+    color: white;
+    margin-top: 20px;
+  }
+  
+  .btn-submit:hover {
+    background-color: #218838;
+  }
+  
+  /* Success dialog box styles */
+  .success-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out, fadeOut 0.3s ease-in-out 2.7s;
+  }
+  
+  .success-icon {
+    font-size: 50px;
+    color: green;
+    animation: tickAnimation 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes tickAnimation {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Add some basic styling to make the form more responsive */
+  @media (max-width: 768px) {
+    .post-job-page {
+      padding: 10px;
+    }
+  
+    .job-form {
+      padding: 15px;
+    }
+  
+    .form-control {
+      padding: 8px;
+    }
+  
+    .btn {
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+  
