@@ -5,16 +5,27 @@ import { FaCheckCircle } from 'react-icons/fa'; // Import tick icon
 const PostJobPage = () => {
   const [position, setPosition] = useState('');
   const [skills, setSkills] = useState('');
+  const [description, setDescription] = useState(''); // New state for description
   const [experience, setExperience] = useState('');
-  const [questions, setQuestions] = useState([{ question: '', type: 'text', attempts: 1 }]);
+  const [resumeScore, setResumeScore] = useState(0); // New state for Resume Score
+  const [interviewScore, setInterviewScore] = useState(0); // New state for Interview Score
+  const [questions, setQuestions] = useState([{ question: '', attempts: 1 }]);
   const [showSuccess, setShowSuccess] = useState(false); // State to show success dialog
 
   const handleAddQuestion = () => {
-    setQuestions([...questions, { question: '', type: 'text', attempts: 1 }]);
+    setQuestions([...questions, { question: '', attempts: 1 }]);
   };
 
   const handleSubmit = () => {
-    const jobData = { position, skills: skills.split(','), experience, questions };
+    const jobData = { 
+      position, 
+      skills: skills.split(','), 
+      description, // Include description in job data
+      experience, 
+      resumeScore, 
+      interviewScore, 
+      questions 
+    };
     fetch('/api/jobs', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -42,6 +53,7 @@ const PostJobPage = () => {
             className="form-control"
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="skills">Skills Required (comma-separated):</label>
           <input
@@ -52,6 +64,18 @@ const PostJobPage = () => {
             className="form-control"
           />
         </div>
+
+        <div className="form-group"> {/* New description input */}
+          <label htmlFor="description">Job Description:</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="form-control"
+            rows="3"
+          />
+        </div>
+
         <div className="form-group">
           <label htmlFor="experience">Experience Required (years):</label>
           <input
@@ -60,6 +84,32 @@ const PostJobPage = () => {
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
             className="form-control"
+          />
+        </div>
+
+        <div className="form-group"> {/* New Resume Score input */}
+          <label htmlFor="resume-score">Resume Score (0 to 100):</label>
+          <input
+            type="number"
+            id="resume-score"
+            value={resumeScore}
+            onChange={(e) => setResumeScore(e.target.value)}
+            className="form-control"
+            min="0"
+            max="100"
+          />
+        </div>
+
+        <div className="form-group"> {/* New Interview Score input */}
+          <label htmlFor="interview-score">Interview Score (0 to 100):</label>
+          <input
+            type="number"
+            id="interview-score"
+            value={interviewScore}
+            onChange={(e) => setInterviewScore(e.target.value)}
+            className="form-control"
+            min="0"
+            max="100"
           />
         </div>
 
@@ -78,20 +128,6 @@ const PostJobPage = () => {
               }}
               className="form-control"
             />
-            <label htmlFor={`type-${index}`}>Answer Type:</label>
-            <select
-              id={`type-${index}`}
-              value={question.type}
-              onChange={(e) => {
-                const updatedQuestions = [...questions];
-                updatedQuestions[index].type = e.target.value;
-                setQuestions(updatedQuestions);
-              }}
-              className="form-control"
-            >
-              <option value="text">Text</option>
-              <option value="video">Video</option>
-            </select>
             <label htmlFor={`attempts-${index}`}>Max Attempts:</label>
             <input
               type="number"
@@ -103,6 +139,7 @@ const PostJobPage = () => {
                 setQuestions(updatedQuestions);
               }}
               className="form-control"
+              min="1"
             />
           </div>
         ))}
