@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError
 
 # Replace with your MongoDB Atlas connection string
-connection_string = "mongodb+srv://anmolkumardubey1:amdmongo@cluster0.zrcjd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+connection_string = ""
 
 def check_connection(uri):
     try:
