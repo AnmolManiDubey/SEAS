@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for cross-origin requests from React
 
 # Configure MongoDB connection
-app.config["MONGO_URI"] = "mongodb+srv://anmolkumardubey1:5wl30ElUKAm6UE2p@cluster0.58gr2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+app.config["MONGO_URI"] = ""
 mongo = PyMongo(app)
 
 @app.route('/api/jobs', methods=['POST'])
